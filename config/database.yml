@@ -2,7 +2,7 @@
 development:
   adapter: sqlserver
   database: AdventureWorks
-  dataserver: mc2008
+  dataserver: vm2008
   mode: dblib
   username: hr
   password: hr
@@ -12,7 +12,7 @@ development:
 test:
   adapter: sqlserver
   database: AdventureWorksTest
-  dataserver: mc2008
+  dataserver: vm2008
   mode: dblib
   username: hr
   password: hr

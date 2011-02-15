@@ -13,7 +13,7 @@ http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
 
 == Setup Notes
 
-Create a "hr" login in SQL Server with a password of "hr". Make the default database AdventureWorks with a default schema of HumanResources. Make sure to also select HumanResourcees ans an owned schema while in the user properties for the AdventureWorks database.
+Create a "hr" login in SQL Server with a password of "hr". Make the default database AdventureWorks with a default schema of HumanResources. Make sure to also select HumanResourcees ans an owned schema while in the user properties for the AdventureWorks database. Give the user some good permissions in order to create tables and/or views. This is required for migrations. I recommend, "db_datareader", "db_datawriter" and "db_ddladmin" or just "db_owner" for short.
 
 Update your freetds.conf file (located ...) and create a ...
 
@@ -29,4 +29,9 @@ Open up database.yml and change the dataserver setting to match your own databas
 We created a config/initializers/activerecord.rb file that holds two optoinal configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).
 
 
+
+== Bugs... 
+
+* Noticed this when first migration.
+TinyTds::Error: Incorrect syntax near '.'.: CREATE UNIQUE INDEX [HumanResources].[unique_schema_migrations] ON [HumanResources].[schema_migrations] ([version])
 
