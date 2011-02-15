@@ -1,11 +1,15 @@
 class CreateViews < ActiveRecord::Migration
 
+  # rake db:migrate:redo VERSION=20110215024229
+
   def self.up
     create_view :employees
+    create_view :employees_addresses
   end
 
   def self.down
     drop_view :employees
+    drop_view :employees_addresses
   end
 
 

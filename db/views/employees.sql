@@ -17,5 +17,5 @@ e.[VacationHours] AS [vacation_hours],
 e.[SickLeaveHours] AS [sick_leave_hours],
 e.[CurrentFlag] AS [current_flag],
 e.[rowguid],
-e.[ModifiedDate] AS [modified_date]
+e.[ModifiedDate] AS [updated_at]
 FROM [HumanResources].[Employee] e;
