@@ -6,13 +6,8 @@ class CreateViews < ActiveRecord::Migration
     create_view :departments
     create_view :employees
     create_view :employees_addresses
-    if ActiveRecord::Base.connection.sqlserver_2005?
-      create_view :employee_department_histories_2005
-      create_view :employee_pay_histories_2005
-    else
-      create_view :employee_department_histories
-      create_view :employee_pay_histories
-    end
+    create_view :employee_department_histories
+    create_view :employee_pay_histories
   end
 
   def self.down
@@ -20,6 +15,7 @@ class CreateViews < ActiveRecord::Migration
     drop_view :employees
     drop_view :employees_addresses
     drop_view :employee_department_histories
+    drop_view :employee_pay_histories
   end
 
 

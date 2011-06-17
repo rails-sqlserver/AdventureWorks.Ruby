@@ -11,7 +11,10 @@ Inspired by ASP.NET Article.
 http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
 
 
-== Setup Notes
+== Database Setup
+
+Download and install the AdventureWorks database. A link can be found in the article 
+above. 
 
 Create an "hr" login in SQL Server with a password of "hr". Make the default database 
 AdventureWorks with a default schema of HumanResources. Make sure to also select 
@@ -19,11 +22,9 @@ HumanResourcees as an owned schema while in the user properties for the Adventur
 database. Give the user some good permissions in order to create tables and/or views. 
 This is required for migrations. I recommend "db_owner".
 
-Update your freetds.conf file (located ...) and create a ...
+export ADVENTUREWORKS_HOST='vm2008'
 
-Open up database.yml and change the dataserver setting to match your own database server you just configured in freetds.conf
-
-
+Note, we have copies in tmp directory, will LT version work? Comment on this above.
 
 
 == Noteworthy
@@ -32,8 +33,17 @@ We created a config/initializers/activerecord.rb file that holds two optional co
 
   $ rake db:migrate
 
+
+* The override_task.rb file in lib.
+  https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/wiki/Rails-DB-Rake-Tasks
+  http://metaskills.net/2010/05/26/the-alias_method_chain-of-rake-override-rake-task/
+
 * Setup views
   - All [ModifiedDate] to [updated_at]
+
+* Force lowercase with adapter?
+
+
 
 
 
