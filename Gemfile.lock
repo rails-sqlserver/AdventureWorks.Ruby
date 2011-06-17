@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 1cc0c3f52ca1aaaa968bd6f5ed6834fd9b99adce
+  revision: 391b3739864c5cf8ba7b792cad27dd023a1f2db2
   branch: 3-1-stable
   specs:
     actionmailer (3.1.0.rc4)
@@ -102,7 +102,7 @@ GEM
     sprockets (2.0.0.beta.10)
       hike (~> 1.0)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     thor (0.14.6)
     tilt (1.3.2)
     tiny_tds (0.4.5)
@@ -124,6 +124,6 @@ DEPENDENCIES
   jquery-rails
   rails!
   sass-rails (~> 3.1.0.rc)
-  tiny_tds
+  tiny_tds (~> 0.4.5)
   turn
   uglifier

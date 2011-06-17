@@ -43,7 +43,7 @@ We created a config/initializers/activerecord.rb file that holds two optional co
 
 * Force lowercase with adapter?
 
-
+* ActiveRecord::Base.schema_format = :sqlserver
 
 
 
