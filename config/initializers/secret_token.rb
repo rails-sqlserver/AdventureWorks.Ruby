@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-AdventureWorks::Application.config.secret_token = 'eae35b092d57c90906bdf90a8edd1a1e1a192edcda0d7efb1ae1b5345692b1e82c706b012fe249196e8198e76d2757e81f0affc602574a7d0f8707f0fdaa5c7f'
+AdventureWorks::Application.config.secret_token = 'e9e03c0fe2ead5e1764a3c75ce52e4006adb4fdde7129d301650bc4ad5fa30ac178886b80a3fffa427cf58ca8b23ee7fe3cfd18263b444c3874c0fcd2c4895f5'
