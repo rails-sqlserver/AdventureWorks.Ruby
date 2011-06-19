@@ -2,7 +2,6 @@
 # General ActiveRecord
 # ActiveRecord::Base.table_name_prefix = 'HumanResources.'
 
-
 ActiveRecord::Base.schema_format = :sqlserver
 
 # SQLServer Adapter

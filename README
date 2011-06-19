@@ -20,7 +20,8 @@ Create an "hr" login in SQL Server with a password of "hr". Make the default dat
 AdventureWorks with a default schema of HumanResources. Make sure to also select 
 HumanResourcees as an owned schema while in the user properties for the AdventureWorks 
 database. Give the user some good permissions in order to create tables and/or views. 
-This is required for migrations. I recommend "db_owner".
+This is required for migrations. I recommend "db_owner". I also gave it a server role
+of "dbcreator" so it can make the test database via rails' rake tasks.
 
 export ADVENTUREWORKS_HOST='vm2008'
 
