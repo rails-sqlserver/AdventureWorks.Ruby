@@ -1,9 +1,7 @@
 
 # Welcome to Rails
 
-Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Control pattern. This application is a direct rip off the of the ASP.NET article [_"Build a Data-Driven Enterprise Web Site in 5 Minutes"_](http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx)
-
-
+Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Control pattern. This application is a direct rip off the of the ASP.NET article [_"Build a Data-Driven Enterprise Web Site in 5 Minutes"_](http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx). This app is meant to serve as an example of how to connect to legacy SQL Server databases with the latest version of all the tools available. In this case [TinyTDS](https://github.com/rails-sqlserver/tiny_tds), the [ActiveRecord SQL Server Adapter](https://github.com/rails-sqlserver/activerecord-sqlserver-adapter) and of course [Rails](http://rubyonrails.org/) itself! 
 
 
 # Local Setup
