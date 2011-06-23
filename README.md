@@ -17,22 +17,36 @@ Download and install the AdventureWorks database. A link can be found in the art
 If the host of your AdventureWorks database server is not `loclalhost`, then setup the `ADVENTUREWORKS_HOST` environment variable with the proper host to use. **It is important that you setup the `ADVENTUREWORKS_SA_PASS` which is used in the databases rake tasks to perform development cloning operations needed to recreate the AdventureWorksTest database.**
 
 
+# Whats To Learn Here?
 
+Below is a series of sections that should be helpful to anyone use the SQL Server adapter. Remember, if you have any questions or feedback, you can ask on our [Google Group](http://groups.google.com/group/rails-sqlserver-adapter) or fork the project and submit pull request.
 
-  
+### Setup Views
 
-# Noteworthy
+I decided to create a set of [views](https://github.com/rails-sqlserver/AdventureWorks.Ruby/tree/master/db/views) that both lowered cased and changed the names of the tables schema for the initial models. You can see how I created these views in our [first migration](https://github.com/rails-sqlserver/AdventureWorks.Ruby/blob/master/db/migrate/20110215024229_create_views.rb) too. None of this was strictly necessary as you can configure ActiveRecord in numerous ways. Case in point this model would have worked for `JobCandidate`.
+
+```ruby
+class JobCandidate < ActiveRecord::Base
+  set_table_name '[HumanResources].[JobCandidate]'
+  set_primary_key 'JobCandidateID'
+  ...
+end
+```
+The latest 3.1 version of the adapter also supports a configuration that automatically lower cases all schema reflection. This includes tables, views, column names, etc. All you have to do is set this in a config initializer file.
+
+```ruby
+ActiveRecord::ConnectionAdapters::SQLServerAdapter.lowercase_schema_reflection = true
+```
+
 
 We created a config/initializers/activerecord.rb file that holds two optional configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).
+
+
 
   $ rake db:migrate
 
 
-  class JobCandidate < ActiveRecord::Base
-    set_table_name '[HumanResources].[JobCandidate]'
-    set_primary_key 'JobCandidateID'
-    ...
-  end
+
 
 
 * The override_task.rb file in lib.
@@ -47,8 +61,10 @@ We created a config/initializers/activerecord.rb file that holds two optional co
 * ActiveRecord::Base.schema_format = :sqlserver
 
 
-# Contribute Back
+# Questions & Contributions
 
-
+* [Our Google Group](http://groups.google.com/group/rails-sqlserver-adapter)
+* [How To Fork A Repo](http://help.github.com/fork-a-repo/)
+* [Donations](http://pledgie.com/campaigns/15531)
 
 
