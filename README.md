@@ -1,17 +1,12 @@
 
-== Welcome to Rails
+# Welcome to Rails
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
-
-
-== Build a Data-Driven Enterprise Web Site in 5 Minutes
-
-Inspired by ASP.NET Article.
-http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
+Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Control pattern. This application is a direct rip off the of the ASP.NET article _"Build a Data-Driven Enterprise Web Site in 5 Minutes"_:http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
 
 
-== Database Setup
+
+
+# Local Setup
 
 Download and install the AdventureWorks database. A link can be found in the article 
 above. 
@@ -30,7 +25,7 @@ export ADVENTUREWORKS_HOST='vm2008'
 Note, we have copies in tmp directory, will LT version work? Comment on this above.
 
 
-== Noteworthy
+# Noteworthy
 
 We created a config/initializers/activerecord.rb file that holds two optional configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).
 
