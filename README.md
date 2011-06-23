@@ -8,11 +8,11 @@ Rails is a web-application framework that includes everything needed to create d
 
 Some basic instructions for getting AdventureWorks.Ruby (on Rails) setup locally for you to play with.
 
-## Install The AdventureWorks Database
+### Install The AdventureWorks Database
 
 Download and install the AdventureWorks database. A link can be found in the article above or a copy can be found in the db/AdventureWorks.bak.zip here locally. Create a "hr" login in SQL Server with a password of "hr". Make the default database AdventureWorks with a default schema of HumanResources. Make sure to also select HumanResourcees as an owned schema while in the user properties for the AdventureWorks database. Give the user some good permissions in order to create tables and/or views. This is required for migrations. I recommend "db_owner". Note, I have only tested this on SQL Server 2008!
 
-## Configure Some Environment Variables
+### Configure Some Environment Variables
 
 If the host of your AdventureWorks database server is not `loclalhost`, then setup the `ADVENTUREWORKS_HOST` environment variable with the proper host to use. **It is important that you setup the `ADVENTUREWORKS_SA_PASS` which is used in the databases rake tasks to perform development cloning operations needed to recreate the AdventureWorksTest database.**
 
