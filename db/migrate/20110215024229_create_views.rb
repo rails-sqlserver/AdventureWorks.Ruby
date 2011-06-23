@@ -1,7 +1,5 @@
 class CreateViews < ActiveRecord::Migration
 
-  # rake db:migrate:redo VERSION=20110215024229
-
   def self.up
     create_view :departments
     create_view :employees

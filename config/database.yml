@@ -2,7 +2,7 @@
 development:
   adapter: sqlserver
   database: AdventureWorks
-  host: <%= ENV['ADVENTUREWORKS_HOST'] %>
+  host: <%= ENV['ADVENTUREWORKS_HOST'] || 'localhost' %>
   username: hr
   password: hr
   pool: 5
@@ -11,7 +11,7 @@ development:
 test:
   adapter: sqlserver
   database: AdventureWorksTest
-  host: <%= ENV['ADVENTUREWORKS_HOST'] %>
+  host: <%= ENV['ADVENTUREWORKS_HOST'] || 'localhost' %>
   username: hr
   password: hr
   pool: 5

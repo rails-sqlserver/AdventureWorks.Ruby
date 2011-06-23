@@ -6,29 +6,18 @@ Rails is a web-application framework that includes everything needed to create d
 
 # Local Setup
 
-Download and install the AdventureWorks database. A link can be found in the article 
-above. 
+Some basic instructions for getting AdventureWorks.Ruby (on Rails) setup locally for you to play with.
 
-ENV['ADVENTUREWORKS_SA_PASS']
+## Install The AdventureWorks Database
 
-Create an "hr" login in SQL Server with a password of "hr". Make the default database 
-AdventureWorks with a default schema of HumanResources. Make sure to also select 
-HumanResourcees as an owned schema while in the user properties for the AdventureWorks 
-database. Give the user some good permissions in order to create tables and/or views. 
-This is required for migrations. I recommend "db_owner". I also gave it a server role
-of "dbcreator" so it can make the test database via rails' rake tasks.
+Download and install the AdventureWorks database. A link can be found in the article above or a copy can be found in the db/AdventureWorks.bak.zip here locally. Create a "hr" login in SQL Server with a password of "hr". Make the default database AdventureWorks with a default schema of HumanResources. Make sure to also select HumanResourcees as an owned schema while in the user properties for the AdventureWorks database. Give the user some good permissions in order to create tables and/or views. This is required for migrations. I recommend "db_owner". Note, I have only tested this on SQL Server 2008!
 
-export ADVENTUREWORKS_HOST='vm2008'
+## Configure Some Environment Variables
 
-Note, we have copies in tmp directory, will LT version work? Comment on this above.
+If the host of your AdventureWorks database server is not `loclalhost`, then setup the `ADVENTUREWORKS_HOST` environment variable with the proper host to use. **It is important that you setup the `ADVENTUREWORKS_SA_PASS` which is used in the databases rake tasks to perform development cloning operations needed to recreate the AdventureWorksTest database.**
 
 
 
-class JobCandidate < ActiveRecord::Base
-  set_table_name '[HumanResources].[JobCandidate]'
-  set_primary_key 'JobCandidateID'
-  ...
-end
 
   
 
@@ -37,6 +26,13 @@ end
 We created a config/initializers/activerecord.rb file that holds two optional configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).
 
   $ rake db:migrate
+
+
+  class JobCandidate < ActiveRecord::Base
+    set_table_name '[HumanResources].[JobCandidate]'
+    set_primary_key 'JobCandidateID'
+    ...
+  end
 
 
 * The override_task.rb file in lib.
@@ -49,6 +45,10 @@ We created a config/initializers/activerecord.rb file that holds two optional co
 * Force lowercase with adapter?
 
 * ActiveRecord::Base.schema_format = :sqlserver
+
+
+# Contribute Back
+
 
 
 
