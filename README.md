@@ -38,27 +38,37 @@ The latest 3.1 version of the adapter also supports a configuration that automat
 ActiveRecord::ConnectionAdapters::SQLServerAdapter.lowercase_schema_reflection = true
 ```
 
+### Test Database Tasks
 
-We created a config/initializers/activerecord.rb file that holds two optional configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).
+A typical paint point for legacy databases and ActiveRecord is that the real schema can not be represented in the `db/schema.rb` file which is generated when you run migrations. This could be due to vendor specific data types, views, user defined functions, schemas, etc. There are some basic steps to overcome this. The first is to tell ActiveRecord to not generate a `schema.rb` by setting this in a config initializer file `ActiveRecord::Base.schema_format = :sql`.
+
+At this point migrations will no longer generate a schema file. Other db related tasks in the Rails databases.rake file will need to be completely over ridden so we can fill in the steps specific to our database to reproduce it. By default, ruby's rake library does not allow you to over ride methods/tasks. So we are going to use little hack @MetaSkills came up with [that allows us to over ride a rake task](https://github.com/rails-sqlserver/AdventureWorks.Ruby/blob/master/lib/override_task.rb). Assuming that is loaded from your lib folder, here is a basic plan of what tasks we are going to over ride in our own `lib/tasks/databases.rake` file.
+
+```ruby
+require 'override_task'
+
+namespace :db do
+  namespace :structure do
+    override_task :dump => :environment do
+      # Dump structure DDL file of current Rails env to db/#{Rails.env}_structure.sql
+    end
+  end
+  namespace :test do
+    override_task :clone_structure => [ "db:structure:dump", "db:test:purge" ] do
+      # Use structure DDL file from db:structure:dump task, build test database...
+    end
+    override_task :purge => :environment do
+      # Create a new empty test database...
+    end
+  end
+end
+```
+You can [see the complete databases.rake](https://github.com/rails-sqlserver/AdventureWorks.Ruby/blob/master/lib/tasks/databases.rake) file we have built. It includes a complicated `:clone_structure` task since rebuilding the AdventureWorksTest database has to be done in a specific order. This addresses things like complex foreign key constraints and schemas (amount other things) present in the AdventureWorks database. Go legacy! The task also imports all the schema migration information into the tests database as a way to check if the test database has been built already. We do this because cloning the development database is an expensive and time consuming tasks. So we only do it when we need to or force it using the `:clone_force` task we made.
 
 
+# Work In Progress
 
-  $ rake db:migrate
-
-
-
-
-
-* The override_task.rb file in lib.
-  https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/wiki/Rails-DB-Rake-Tasks
-  http://metaskills.net/2010/05/26/the-alias_method_chain-of-rake-override-rake-task/
-
-* Setup views
-  - All [ModifiedDate] to [updated_at]
-
-* Force lowercase with adapter?
-
-* ActiveRecord::Base.schema_format = :sqlserver
+There is still a work todo for final web application. Just started on building the Employee admin interface and need to add some tests too.
 
 
 # Questions & Contributions
