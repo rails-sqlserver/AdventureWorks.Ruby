@@ -3,3 +3,4 @@ db/*.sqlite3
 db/*structure.sql
 log/*.log
 tmp/
+.rvmrc
