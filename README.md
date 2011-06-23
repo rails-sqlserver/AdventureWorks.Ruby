@@ -23,6 +23,15 @@ export ADVENTUREWORKS_HOST='vm2008'
 Note, we have copies in tmp directory, will LT version work? Comment on this above.
 
 
+
+class JobCandidate < ActiveRecord::Base
+  set_table_name '[HumanResources].[JobCandidate]'
+  set_primary_key 'JobCandidateID'
+  ...
+end
+
+  
+
 # Noteworthy
 
 We created a config/initializers/activerecord.rb file that holds two optional configurations. One for the table name prefix to match our default schema. This way we can keep our table name configurations to a minimal in our models. We also added a configuration option for the SQL Server adapter to enable newly created string columns as unicode/national types. This only affects newly created columns via migrations. So if you specify a :string type, you will get nvarchar(255) vs varchar(255).

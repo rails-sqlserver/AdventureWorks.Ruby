@@ -1,0 +1,30 @@
+
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div class="error">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <ol>
+    <li>
+      <%= f.label :national_id_number, 'National ID', :class => 'required' %>
+      <%= f.text_field :national_id_number %>
+    </li>
+    <li>
+      <%= f.label :title, 'Title', :class => 'required' %>
+      <%= f.text_field :title %>
+    </li>
+    <li>
+      <%= f.label :login_id, 'Login ID', :class => 'required' %>
+      <%= f.text_field :login_id %>
+    </li>
+  </ol>
+  <fieldset class="buttons">
+    <%= f.submit %>
+  </fieldset>
+<% end %>

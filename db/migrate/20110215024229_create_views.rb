@@ -8,6 +8,8 @@ class CreateViews < ActiveRecord::Migration
     create_view :employees_addresses
     create_view :employee_department_histories
     create_view :employee_pay_histories
+    create_view :job_candidates
+    create_view :shifts
   end
 
   def self.down
@@ -16,6 +18,8 @@ class CreateViews < ActiveRecord::Migration
     drop_view :employees_addresses
     drop_view :employee_department_histories
     drop_view :employee_pay_histories
+    drop_view :job_candidates
+    drop_view :shifts
   end
 
 
@@ -28,7 +32,7 @@ class CreateViews < ActiveRecord::Migration
   end
   
   def self.drop_view(name)
-    execute "IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[HumanResources].[#{name}]'))
+    execute "IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[HumanResources].[#{name}]')) 
              DROP VIEW [HumanResources].[#{name}]"
   end
   
