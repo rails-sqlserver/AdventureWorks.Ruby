@@ -65,6 +65,13 @@ end
 ```
 You can [see the complete databases.rake](https://github.com/rails-sqlserver/AdventureWorks.Ruby/blob/master/lib/tasks/databases.rake) file we have built. It includes a complicated `:clone_structure` task since rebuilding the AdventureWorksTest database has to be done in a specific order. This addresses things like complex foreign key constraints and schemas (amount other things) present in the AdventureWorks database. Go legacy! The task also imports all the schema migration information into the tests database as a way to check if the test database has been built already. We do this because cloning the development database is an expensive and time consuming tasks. So we only do it when we need to or force it using the `:clone_force` task we made.
 
+### POSIX Development
+
+If your on a unix'y platform you may be wondering how these `smoscript` and `sqlcmd` binaries would work. Most users that develop with SQL Server are on something other than windows. The typical setup to to have SSH access to your windows box via something like cygwyn and to issue any commands remotely. To make this easy, I have created two bin wrappers that pipe the sqlcmd and smoscript commands via SSH to your windows database box. Make sure to use the same name for your ssh config to that bas as the same name used for the `ADVENTUREWORKS_HOST` environment variable. Assuming that all lines up, these should work.
+
+    $ ln -s /repos/myrojects/AdventureWorks.Ruby/db/bin/sqlcmd /usr/local/bin/sqlcmd
+    $ ln -s /repos/myrojects/AdventureWorks.Ruby/db/bin/smoscript /usr/local/bin/smoscript
+
 
 # Work In Progress
 
