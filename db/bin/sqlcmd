@@ -1,2 +1,31 @@
 #!/usr/bin/env ruby
+#
+# A sqlcmd bin replacement for unix platforms for use by the Rails 
+# db:test:clone_structure rake task for the ActiveRecord SQL Server adapter.
+# 
+# Make sure you have ssh access to your Windows box using the host
+# name in your database.yml. If your windows ssh username is different 
+# than your unix username, setup a ~/.ssh/conf entry that fills in the 
+# details.
+#
+
+args = ARGV.dup
+
+host_index = args.index('-S') + 1
+host = args[host_index].dup
+args[host_index] = 'localhost'
+
+if file_index = args.index('-i')
+  findex = file_index + 1
+  args[findex] = args[findex].gsub /\\/, '/'
+end
+
+if query_index = args.index('-Q')
+  qindex = query_index + 1
+  args[qindex] = "\\\"#{args[qindex]}\\\""
+end
+
+cmd = args.join(' ')
+
+`ssh #{host} \"sqlcmd #{cmd}\"`
 

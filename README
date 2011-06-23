@@ -16,6 +16,8 @@ http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
 Download and install the AdventureWorks database. A link can be found in the article 
 above. 
 
+ENV['ADVENTUREWORKS_SA_PASS']
+
 Create an "hr" login in SQL Server with a password of "hr". Make the default database 
 AdventureWorks with a default schema of HumanResources. Make sure to also select 
 HumanResourcees as an owned schema while in the user properties for the AdventureWorks 
