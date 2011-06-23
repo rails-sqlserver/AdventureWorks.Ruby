@@ -1,7 +1,7 @@
 
 # Welcome to Rails
 
-Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Control pattern. This application is a direct rip off the of the ASP.NET article _"Build a Data-Driven Enterprise Web Site in 5 Minutes"_:http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx
+Rails is a web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Control pattern. This application is a direct rip off the of the ASP.NET article [_"Build a Data-Driven Enterprise Web Site in 5 Minutes"_](http://msdn.microsoft.com/da-dk/magazine/gg535665%28en-us%29.aspx)
 
 
 
