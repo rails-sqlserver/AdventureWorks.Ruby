@@ -14,7 +14,7 @@ Download and install the AdventureWorks database. A link can be found in the art
 
 ### Configure Some Environment Variables
 
-If the host of your AdventureWorks database server is not `loclalhost`, then setup the `ADVENTUREWORKS_HOST` environment variable with the proper host to use. **It is important that you setup the `ADVENTUREWORKS_SA_PASS` which is used in the databases rake tasks to perform development cloning operations needed to recreate the AdventureWorksTest database.**
+If the host of your AdventureWorks database server is not `localhost`, then setup the `ADVENTUREWORKS_HOST` environment variable with the proper host to use. **It is important that you setup the `ADVENTUREWORKS_SA_PASS` which is used in the databases rake tasks to perform development cloning operations needed to recreate the AdventureWorksTest database.**
 
 
 # Whats To Learn Here?
@@ -40,7 +40,7 @@ ActiveRecord::ConnectionAdapters::SQLServerAdapter.lowercase_schema_reflection =
 
 ### Test Database Tasks
 
-A typical paint point for legacy databases and ActiveRecord is that the real schema can not be represented in the `db/schema.rb` file which is generated when you run migrations. This could be due to vendor specific data types, views, user defined functions, schemas, etc. There are some basic steps to overcome this. The first is to tell ActiveRecord to not generate a `schema.rb` by setting this in a config initializer file `ActiveRecord::Base.schema_format = :sql`.
+A typical pain point for legacy databases and ActiveRecord is that the real schema can not be represented in the `db/schema.rb` file which is generated when you run migrations. This could be due to vendor specific data types, views, user defined functions, schemas, etc. There are some basic steps to overcome this. The first is to tell ActiveRecord to not generate a `schema.rb` by setting this in a config initializer file `ActiveRecord::Base.schema_format = :sql`.
 
 At this point migrations will no longer generate a schema file. Other db related tasks in the Rails databases.rake file will need to be completely over ridden so we can fill in the steps specific to our database to reproduce it. By default, ruby's rake library does not allow you to over ride methods/tasks. So we are going to use little hack @MetaSkills came up with [that allows us to over ride a rake task](https://github.com/rails-sqlserver/AdventureWorks.Ruby/blob/master/lib/override_task.rb). Assuming that is loaded from your lib folder, here is a basic plan of what tasks we are going to over ride in our own `lib/tasks/databases.rake` file.
 
@@ -67,7 +67,7 @@ You can [see the complete databases.rake](https://github.com/rails-sqlserver/Adv
 
 ### POSIX Development
 
-If your on a unix'y platform you may be wondering how these `smoscript` and `sqlcmd` binaries would work. Most users that develop with SQL Server are on something other than windows. The typical setup to to have SSH access to your windows box via something like cygwyn and to issue any commands remotely. To make this easy, I have created two bin wrappers that pipe the sqlcmd and smoscript commands via SSH to your windows database box. Make sure to use the same name for your ssh config to that bas as the same name used for the `ADVENTUREWORKS_HOST` environment variable. Assuming that all lines up, these should work.
+If you're on a unix'y platform you may be wondering how these `smoscript` and `sqlcmd` binaries would work. Most users that develop with SQL Server are on something other than windows. The typical setup to to have SSH access to your windows box via something like cygwyn and to issue any commands remotely. To make this easy, I have created two bin wrappers that pipe the sqlcmd and smoscript commands via SSH to your windows database box. Make sure to use the same name for your ssh config to that bas as the same name used for the `ADVENTUREWORKS_HOST` environment variable. Assuming that all lines up, these should work.
 
     $ ln -s /repos/myrojects/AdventureWorks.Ruby/db/bin/sqlcmd /usr/local/bin/sqlcmd
     $ ln -s /repos/myrojects/AdventureWorks.Ruby/db/bin/smoscript /usr/local/bin/smoscript
