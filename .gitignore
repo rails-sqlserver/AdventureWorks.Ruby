@@ -4,3 +4,4 @@ db/*structure.sql
 log/*.log
 tmp/
 .rvmrc
+.rbenv-version
